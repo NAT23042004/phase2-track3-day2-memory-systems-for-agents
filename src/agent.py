@@ -89,7 +89,7 @@ class MultiMemoryAgent:
         }
 
     def trim_context(self, state: AgentState):
-        system_prompt = "You are a helpful assistant with multi-level memory. Use the provided USER PREFERENCES and RETRIEVED KNOWLEDGE/EXPERIENCES to personalize your response. If you see a user's name or allergy in PREFERENCES, acknowledge it when relevant."
+        system_prompt = "Bạn là một trợ lý ảo hữu ích với hệ thống bộ nhớ đa cấp. Hãy sử dụng thông tin trong USER PREFERENCES (Sở thích người dùng) và RETRIEVED KNOWLEDGE/EXPERIENCES (Kiến thức/Trải nghiệm đã truy xuất) để cá nhân hóa câu trả lời. Nếu bạn thấy tên người dùng hoặc thông tin dị ứng trong PREFERENCES, hãy khéo léo nhắc lại khi phù hợp. Luôn phản hồi bằng tiếng Việt."
         final_context = self.context_mgr.manage_context(
             system_prompt,
             state["preferences"],
@@ -100,7 +100,7 @@ class MultiMemoryAgent:
 
     def generate_response(self, state: AgentState):
         messages = [
-            HumanMessage(content=f"Context:\n{state['final_context']}\n\nQuery: {state['query']}")
+            HumanMessage(content=f"Ngữ cảnh:\n{state['final_context']}\n\nCâu hỏi của người dùng: {state['query']}\n\nTrả lời bằng tiếng Việt:")
         ]
         response = self.llm.invoke(messages)
         return {"response": response.content}

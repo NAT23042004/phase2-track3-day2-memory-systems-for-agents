@@ -7,16 +7,16 @@ load_dotenv()
 
 def main():
     agent = MultiMemoryAgent()
-    print("Welcome to Multi-Memory Agent CLI! (Type 'exit' to quit)")
+    print("Chào mừng bạn đến với Multi-Memory Agent CLI! (Gõ 'exit' hoặc 'quit' để thoát)")
     
     while True:
-        query = input("\nYou: ")
+        query = input("\nBạn: ")
         if query.lower() in ["exit", "quit"]:
             break
             
         result = agent.run(query)
         print(f"\nAgent: {result['response']}")
-        print(f"(Intent: {result['intent']})")
+        print(f"(Ý định: {result['intent']})")
 
 if __name__ == "__main__":
     main()

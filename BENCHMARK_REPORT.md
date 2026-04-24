@@ -40,5 +40,13 @@ This report evaluates the performance of a Multi-Memory Agent built with LangGra
 - **Latency**: The multi-node graph (Router -> Extractor -> Retriever) adds ~1.5s overhead compared to a naive agent.
 - **State Size**: As episodic logs grow, loading all episodes into the context manager (even with trimming) will become a bottleneck. A "Retrieval-Augmented Episodic Memory" (using vector search for episodes) would be needed for scale.
 
-## 5. Conclusion
+## 5. Bonus Points Implementation
+The current implementation targets the following bonus points:
+1.  **Persistent KV Store (+2)**: Even without a Redis server, the agent falls back to a **persistent JSON store** (`user_profile.json`), ensuring preferences persist across process restarts.
+2.  **ChromaDB Integration (+2)**: Fully functional semantic memory using **ChromaDB** with OpenAI embeddings (Real vector DB).
+3.  **Advanced LLM Extraction (+2)**: Uses a dedicated **Pydantic-based extraction node** (`PreferenceExtractor`) for structured updates and conflict resolution.
+4.  **Precise Token Counting (+2)**: Uses **`tiktoken`** for exact token calculation instead of simple word counts.
+5.  **Graph Flow Demo (+2)**: Provides a clear **LangGraph flow visualization** (exported as `agent_graph_mermaid.md`).
+
+## 6. Conclusion
 The Multi-Memory Agent successfully satisfies all requirements of Lab 17. It demonstrates robust fact-correction, long-context management via hierarchical trimming, and effective cross-session personalization.

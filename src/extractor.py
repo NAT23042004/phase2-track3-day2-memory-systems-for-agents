@@ -1,4 +1,4 @@
-from typing import Dict, Any, Optional
+from typing import Optional
 from pydantic import BaseModel, Field
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
@@ -15,9 +15,9 @@ class PreferenceExtractor:
         self.parser = PydanticOutputParser(pydantic_object=PreferenceUpdate)
         
         self.prompt = ChatPromptTemplate.from_template(
-            "Extract user preferences from the query as key-value pairs.\n"
-            "If the user provides a correction (e.g., 'No, I meant X not Y'), identify the key and the new value.\n"
-            "\nQuery: {query}\n"
+            "Trích xuất sở thích của người dùng từ câu truy vấn dưới dạng các cặp key-value.\n"
+            "Nếu người dùng đưa ra một đính chính (ví dụ: 'Không, ý tôi là X chứ không phải Y'), hãy xác định key và giá trị (value) mới.\n"
+            "\nTruy vấn: {query}\n"
             "\n{format_instructions}"
         )
 

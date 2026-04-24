@@ -1,30 +1,26 @@
 [
   {
-    "episode": "Wait, I was wrong, I am allergic to soy, not cow milk.",
-    "response": "USER PREFERENCES: {\"name\": \"\", \"allergy\": \"soy\"}\n\nI have updated your allergy information to soy instead of cow milk. Thank you for letting me know. If you need any assistance or have any other preferences, feel free to share."
+    "episode": "\u00c0 t\u00f4i nh\u1ea7m, t\u00f4i b\u1ecb d\u1ecb \u1ee9ng \u0111\u1eadu n\u00e0nh ch\u1ee9 kh\u00f4ng ph\u1ea3i s\u1eefa b\u00f2.",
+    "response": "D\u1ea1, th\u00f4ng tin c\u1ee7a anh \u0111\u00e3 \u0111\u01b0\u1ee3c c\u1eadp nh\u1eadt. Anh b\u1ecb d\u1ecb \u1ee9ng v\u1edbi \u0111\u1eadu n\u00e0nh, kh\u00f4ng ph\u1ea3i s\u1eefa b\u00f2. Anh n\u00ean tr\u00e1nh \u0103n c\u00e1c th\u1ef1c ph\u1ea9m ch\u1ee9a \u0111\u1eadu n\u00e0nh \u0111\u1ec3 \u0111\u1ea3m b\u1ea3o s\u1ee9c kh\u1ecfe nh\u00e9!"
   },
   {
-    "episode": "I am struggling with Docker setup today. The container won't start.",
-    "response": "I'm sorry to hear that you're having trouble with Docker setup. Is there a specific error message you're encountering when trying to start the container? I may be able to help troubleshoot the issue."
+    "episode": "H\u00f4m nay t\u00f4i \u0111ang g\u1eb7p kh\u00f3 kh\u0103n khi c\u00e0i \u0111\u1eb7t Docker. Container kh\u00f4ng th\u1ec3 kh\u1edfi \u0111\u1ed9ng \u0111\u01b0\u1ee3c.",
+    "response": "Xin ch\u00e0o Natus! T\u00f4i r\u1ea5t ti\u1ebfc nghe v\u1ec1 v\u1ea5n \u0111\u1ec1 m\u00e0 b\u1ea1n \u0111ang g\u1eb7p ph\u1ea3i v\u1edbi Docker. C\u00f3 th\u1ec3 b\u1ea1n c\u1ea7n ki\u1ec3m tra l\u1ea1i c\u1ea5u h\u00ecnh c\u1ee7a container ho\u1eb7c xem x\u00e9t xem c\u00f3 ph\u1ea3i do vi\u1ec7c thi\u1ebfu t\u00e0i nguy\u00ean hay kh\u00f4ng. N\u1ebfu c\u1ea7n h\u1ed7 tr\u1ee3 th\u00eam, b\u1ea1n c\u00f3 th\u1ec3 cung c\u1ea5p th\u00eam th\u00f4ng tin chi ti\u1ebft \u0111\u1ec3 t\u00f4i c\u00f3 th\u1ec3 h\u1ed7 tr\u1ee3 b\u1ea1n t\u1ed1t h\u01a1n. Ch\u00fac b\u1ea1n gi\u1ea3i quy\u1ebft v\u1ea5n \u0111\u1ec1 th\u00e0nh c\u00f4ng!"
   },
   {
-    "episode": "Can you help me fix the issue I mentioned earlier?",
-    "response": "Of course! I'm here to assist you with your Docker setup issue. Could you please provide more details about the specific error message you're encountering when trying to start the container? This information will help me troubleshoot the problem more effectively."
+    "episode": "B\u1ea1n c\u00f3 th\u1ec3 gi\u00fap t\u00f4i s\u1eeda l\u1ed7i m\u00e0 t\u00f4i \u0111\u00e3 nh\u1eafc t\u1edbi l\u00fac n\u00e3y kh\u00f4ng?",
+    "response": "D\u0129 nhi\u00ean, t\u00f4i s\u1ebd c\u1ed1 g\u1eafng gi\u00fap b\u1ea1n s\u1eeda l\u1ed7i v\u1edbi Docker. B\u1ea1n c\u00f3 th\u1ec3 cung c\u1ea5p th\u00eam th\u00f4ng tin chi ti\u1ebft v\u1ec1 v\u1ea5n \u0111\u1ec1 m\u00e0 b\u1ea1n \u0111ang g\u1eb7p ph\u1ea3i \u0111\u1ec3 t\u00f4i c\u00f3 th\u1ec3 h\u1ed7 tr\u1ee3 b\u1ea1n t\u1ed1t h\u01a1n. Ch\u1edd m\u1ed9t ch\u00fat, t\u00f4i s\u1ebd ki\u1ec3m tra v\u00e0 \u0111\u01b0a ra gi\u1ea3i ph\u00e1p cho b\u1ea1n."
   },
   {
-    "episode": "What was the very first thing we talked about in this scenario?",
-    "response": "The very first thing we talked about in this scenario was your struggle with Docker setup and the container not starting."
+    "episode": "B\u1ea1n c\u00f2n nh\u1edb t\u00ean t\u00f4i \u1edf k\u1ecbch b\u1ea3n \u0111\u1ea7u ti\u00ean l\u00e0 g\u00ec kh\u00f4ng?",
+    "response": "Xin l\u1ed7i, t\u00f4i kh\u00f4ng th\u1ec3 truy c\u1eadp th\u00f4ng tin \u0111\u00f3 t\u1eeb b\u1ed9 nh\u1edb c\u1ee7a m\u00ecnh. C\u00f3 \u0111i\u1ec1u g\u00ec kh\u00e1c t\u00f4i c\u00f3 th\u1ec3 gi\u00fap \u0111\u1ee1 b\u1ea1n kh\u00f4ng?"
   },
   {
-    "episode": "Do you still remember my name from the first scenario?",
-    "response": "Based on the information provided, your name was not mentioned in the user preferences or in the retrieved knowledge/experiences. If you'd like to share your name with me, I can certainly remember it for future reference. Is there anything else you'd like to know or discuss regarding your Docker setup or any other topic?"
+    "episode": "Tu\u1ea7n tr\u01b0\u1edbc t\u00f4i \u0111\u00e3 r\u1ea5t v\u1ea5t v\u1ea5t v\u1ea3 \u0111\u1ec3 hi\u1ec3u v\u1ec1 c\u01a1 ch\u1ebf GIL trong Python.",
+    "response": "Xin ch\u00e0o! T\u00f4i r\u1ea5t ti\u1ebfc v\u00ec kh\u00f3 kh\u0103n m\u00e0 b\u1ea1n \u0111\u00e3 g\u1eb7p v\u1edbi c\u01a1 ch\u1ebf GIL trong Python. N\u1ebfu b\u1ea1n c\u1ea7n th\u00eam th\u00f4ng tin ho\u1eb7c mu\u1ed1n t\u00ecm hi\u1ec3u v\u1ec1 b\u1ea5t k\u1ef3 ch\u1ee7 \u0111\u1ec1 n\u00e0o kh\u00e1c, h\u00e3y \u0111\u1eebng ng\u1ea7n ng\u1ea1i \u0111\u1ec3 l\u1ea1i c\u00e2u h\u1ecfi cho t\u00f4i nh\u00e9! Ch\u00fac b\u1ea1n th\u00e0nh c\u00f4ng trong vi\u1ec7c nghi\u00ean c\u1ee9u v\u1ec1 Python!"
   },
   {
-    "episode": "Last week I had a hard time understanding the GIL in Python.",
-    "response": "I'm here to help you with that! The Global Interpreter Lock (GIL) in Python is a mechanism used in the Python interpreter to ensure that only one thread executes Python bytecode at a time. This can sometimes lead to performance limitations in multi-threaded applications. If you have any specific questions or need further clarification on this topic, feel free to ask!"
-  },
-  {
-    "episode": "Summarize the technical challenges I face recently.",
-    "response": "You have been struggling with Docker setup, specifically with the container not starting. Additionally, you had difficulty understanding the Global Interpreter Lock (GIL) in Python last week. If you need further assistance or clarification on these topics, feel free to ask!"
+    "episode": "H\u00e3y t\u00f3m t\u1eaft nh\u1eefng kh\u00f3 kh\u0103n k\u1ef9 thu\u1eadt m\u00e0 t\u00f4i g\u1eb7p ph\u1ea3i g\u1ea7n \u0111\u00e2y.",
+    "response": "G\u1ea7n \u0111\u00e2y b\u1ea1n \u0111\u00e3 g\u1eb7p kh\u00f3 kh\u0103n v\u1edbi c\u01a1 ch\u1ebf GIL trong Python. N\u1ebfu c\u1ea7n th\u00eam th\u00f4ng tin ho\u1eb7c mu\u1ed1n t\u00ecm hi\u1ec3u v\u1ec1 b\u1ea5t k\u1ef3 ch\u1ee7 \u0111\u1ec1 n\u00e0o kh\u00e1c, \u0111\u1eebng ng\u1ea7n ng\u1ea1i \u0111\u1ec3 l\u1ea1i c\u00e2u h\u1ecfi cho t\u00f4i nh\u00e9! Ch\u00fac b\u1ea1n th\u00e0nh c\u00f4ng trong vi\u1ec7c nghi\u00ean c\u1ee9u v\u1ec1 Python!"
   }
 ]

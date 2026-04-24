@@ -1,6 +1,9 @@
 from typing import Any, Dict, List
+
 from langchain_classic.memory import ConversationBufferMemory
+
 from src.memory.base import BaseMemory
+
 
 class ShortTermMemory(BaseMemory):
     def __init__(self):

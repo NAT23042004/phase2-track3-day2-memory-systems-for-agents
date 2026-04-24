@@ -1,98 +1,113 @@
-import time
-import os
-import json
 from dotenv import load_dotenv
+
 from src.agent import MultiMemoryAgent
-from langchain_openai import ChatOpenAI
-from langchain_core.messages import HumanMessage
 
 load_dotenv()
 
+
 class BenchmarkRunner:
-    def __init__(self):
+    def __init__(self, log_file="benchmark_detailed_results.txt"):
         self.agent = MultiMemoryAgent()
+        self.log_file = log_file
+        # Xóa file log cũ nếu có
+        with open(self.log_file, "w", encoding="utf-8") as f:
+            f.write("=== NHẬT KÝ CHI TIẾT BENCHMARK MULTI-MEMORY AGENT (TIẾNG VIỆT) ===\n\n")
+
+    def log(self, message: str):
+        print(message)
+        with open(self.log_file, "a", encoding="utf-8") as f:
+            f.write(message + "\n")
 
     def run_scenario(self, name: str, turns: list[str]):
-        print(f"--- Scenario: {name} ---")
-        # Clear short-term memory for each new scenario to ensure clean turns
-        # but keep long-term/episodic/semantic for cross-turn tests if needed.
-        # However, rubric says "multi-turn conversations", implying a continuous session
-        # or separate sessions. Let's do separate scenarios for clarity.
+        self.log(f"--- Kịch bản: {name} ---")
         self.agent.short_term.clear()
-        
+
         for i, query in enumerate(turns):
-            print(f"Turn {i+1} User: {query}")
+            self.log(f"Lượt {i + 1} Người dùng: {query}")
             result = self.agent.run(query)
-            print(f"Turn {i+1} Agent (Intent: {result['intent']}): {result['response']}\n")
-        print("-" * 30)
+            self.log(f"Lượt {i + 1} Agent (Ý định: {result['intent']}): {result['response']}\n")
+        self.log("-" * 30 + "\n")
+
 
 def run_benchmarks():
     runner = BenchmarkRunner()
-    
-    # 1. Profile Recall
-    runner.run_scenario("Profile Recall", [
-        "Hi, my name is Natus.",
-        "What is my name?"
-    ])
 
-    # 2. Conflict Update (MANDATORY TEST)
-    runner.run_scenario("Conflict Update", [
-        "I am allergic to cow milk.",
-        "Wait, I was wrong, I am allergic to soy, not cow milk.",
-        "What am I allergic to?"
-    ])
+    # 1. Profile Recall (Ghi nhớ thông tin cá nhân)
+    runner.run_scenario("Ghi nhớ Profile", ["Chào bạn, tôi tên là Natus.", "Tên của tôi là gì?"])
 
-    # 3. Episodic Recall
-    runner.run_scenario("Episodic Recall", [
-        "I am struggling with Docker setup today. The container won't start.",
-        "Can you help me fix the issue I mentioned earlier?"
-    ])
+    # 2. Conflict Update (Cập nhật xung đột thông tin - QUAN TRỌNG)
+    runner.run_scenario(
+        "Cập nhật xung đột",
+        [
+            "Tôi bị dị ứng với sữa bò.",
+            "À tôi nhầm, tôi bị dị ứng đậu nành chứ không phải sữa bò.",
+            "Tôi bị dị ứng với cái gì?",
+        ],
+    )
 
-    # 4. Semantic Retrieval
-    # Pre-populate semantic memory first for testing
-    runner.agent.semantic.save({"text": "The company policy states that employees get 20 days of PTO per year.", "metadata": {"source": "policy_doc"}})
-    runner.run_scenario("Semantic Retrieval", [
-        "How many days of PTO do I get per year according to policy?"
-    ])
+    # 3. Episodic Recall (Ghi nhớ trải nghiệm)
+    runner.run_scenario(
+        "Ghi nhớ trải nghiệm",
+        [
+            "Hôm nay tôi đang gặp khó khăn khi cài đặt Docker. Container không thể khởi động được.",
+            "Bạn có thể giúp tôi sửa lỗi mà tôi đã nhắc tới lúc nãy không?",
+        ],
+    )
 
-    # 5. Trim/Token Budget (Simulating long history)
-    long_history_scenario = ["Talk to me about random topic " + str(i) for i in range(15)]
-    long_history_scenario.append("What was the very first thing we talked about in this scenario?")
-    runner.run_scenario("Context Trimming", long_history_scenario)
+    # 4. Semantic Retrieval (Truy xuất kiến thức)
+    # Lưu sẵn kiến thức vào ChromaDB
+    runner.agent.semantic.save(
+        {
+            "text": "Chính sách công ty quy định nhân viên được nghỉ phép 20 ngày mỗi năm.",
+            "metadata": {"source": "policy_doc"},
+        }
+    )
+    runner.run_scenario("Truy xuất kiến thức", ["Theo quy định công ty thì tôi được nghỉ phép bao nhiêu ngày một năm?"])
 
-    # 6. Combined Preference & Logic
-    runner.run_scenario("Preference Logic", [
-        "I prefer dark mode in UI.",
-        "Suggest a color scheme for my IDE based on my preferences."
-    ])
+    # 5. Context Trimming (Quản lý Context Window dài)
+    long_history_scenario = ["Hãy nói về chủ đề ngẫu nhiên số " + str(i) for i in range(15)]
+    long_history_scenario.append("Điều đầu tiên mà chúng ta đã nói trong kịch bản này là gì?")
+    runner.run_scenario("Cắt tỉa Context", long_history_scenario)
 
-    # 7. Cross-Session Consistency (Simulated by not clearing long-term)
-    runner.run_scenario("Cross-Session Persistence", [
-        "Do you still remember my name from the first scenario?"
-    ])
+    # 6. Combined Preference & Logic (Kết hợp sở thích và logic)
+    runner.run_scenario(
+        "Logic sở thích",
+        [
+            "Tôi thích sử dụng chế độ tối (dark mode) trên giao diện.",
+            "Hãy gợi ý cho tôi một bộ màu cho IDE dựa trên sở thích của tôi.",
+        ],
+    )
 
-    # 8. Complex Experience
-    runner.run_scenario("Complex Experience", [
-        "Last week I had a hard time understanding the GIL in Python.",
-        "Summarize the technical challenges I face recently."
-    ])
+    # 7. Cross-Session Consistency (Tính nhất quán qua các phiên)
+    runner.run_scenario("Nhất quán xuyên suốt", ["Bạn còn nhớ tên tôi ở kịch bản đầu tiên là gì không?"])
 
-    # 9. Knowledge Discovery
-    runner.run_scenario("Knowledge Discovery", [
-        "I need to know about the capital of France.",
-        "Tell me a fun fact about that city."
-    ])
+    # 8. Complex Experience (Trải nghiệm phức tạp)
+    runner.run_scenario(
+        "Trải nghiệm phức tạp",
+        [
+            "Tuần trước tôi đã rất vất vất vả để hiểu về cơ chế GIL trong Python.",
+            "Hãy tóm tắt những khó khăn kỹ thuật mà tôi gặp phải gần đây.",
+        ],
+    )
 
-    # 10. Final Summary
-    runner.run_scenario("Final Summary", [
-        "Summarize everything you know about my preferences and past struggles today."
-    ])
+    # 9. Knowledge Discovery (Khám phá kiến thức)
+    runner.run_scenario(
+        "Khám phá kiến thức",
+        ["Tôi muốn biết về thủ đô của nước Pháp.", "Hãy cho tôi biết một sự thật thú vị về thành phố đó."],
+    )
+
+    # 10. Final Summary (Tóm tắt cuối cùng)
+    runner.run_scenario(
+        "Tóm tắt tổng kết",
+        ["Hãy tóm tắt tất cả những gì bạn biết về sở thích và những khó khăn của tôi trong ngày hôm nay."],
+    )
+
 
 if __name__ == "__main__":
-    # Clear all memories for a fresh start
+    # Làm sạch bộ nhớ cho lần chạy mới
     agent = MultiMemoryAgent()
     agent.long_term.clear()
     agent.episodic.clear()
     agent.semantic.clear()
-    
+
     run_benchmarks()
