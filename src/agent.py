@@ -68,7 +68,7 @@ class MultiMemoryAgent:
         
         # Always load preferences
         prefs_data = self.long_term.load()
-        prefs = json.dumps(prefs_data)
+        prefs = json.dumps(prefs_data, ensure_ascii=False)
         print(f"DEBUG: Loaded Preferences: {prefs}")
         
         if intent == "FACTUAL":
@@ -77,7 +77,7 @@ class MultiMemoryAgent:
         elif intent == "EXPERIENCE":
             # For simplicity, load all episodes and let context manager handle it
             episodes = self.episodic.load()
-            retrieved = [json.dumps(e) for e in episodes]
+            retrieved = [json.dumps(e, ensure_ascii=False) for e in episodes]
             print(f"DEBUG: Retrieved {len(retrieved)} Episodes")
             
         history = self.short_term.load()

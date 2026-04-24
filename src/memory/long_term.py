@@ -28,7 +28,7 @@ class LongTermMemory(BaseMemory):
 
     def _save_fallback(self, data: Dict[str, Any]) -> None:
         with open(self.fallback_file, 'w') as f:
-            json.dump(data, f, indent=2)
+            json.dump(data, f, indent=2, ensure_ascii=False)
 
     def save(self, data: Dict[str, Any]) -> None:
         key = f"user:{self.user_id}:prefs"
@@ -36,7 +36,7 @@ class LongTermMemory(BaseMemory):
             current_prefs = self.client.get(key)
             prefs = json.loads(current_prefs) if current_prefs else {}
             prefs.update(data)
-            self.client.set(key, json.dumps(prefs))
+            self.client.set(key, json.dumps(prefs, ensure_ascii=False))
         else:
             all_data = self._load_fallback()
             prefs = all_data.get(key, {})

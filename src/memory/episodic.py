@@ -18,7 +18,7 @@ class EpisodicMemory(BaseMemory):
             episodes = json.load(f)
             episodes.append(data)
             f.seek(0)
-            json.dump(episodes, f, indent=2)
+            json.dump(episodes, f, indent=2, ensure_ascii=False)
             f.truncate()
 
     def load(self, query: str = "", **kwargs) -> List[Dict[str, Any]]:
